@@ -1,0 +1,9 @@
+<div *ngFor = "let x of todoArray">
+    <div class="jumbotron">
+        <h1 class="display-4">{{x.title}}</h1>
+        <p class="lead">{{x.desc}}</p>
+        <p class="lead">
+          <a class="btn btn-danger btn-md" href="#" role="button">Delete</a>
+        </p>
+    </div>
+</div>
