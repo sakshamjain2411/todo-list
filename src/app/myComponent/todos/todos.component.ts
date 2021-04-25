@@ -8,31 +8,36 @@ import { todoObject } from './todos';
 })
 export class TodosComponent implements OnInit {
 
-  todoArray:todoObject[];
+  localItem: string;
+  todoArray: todoObject[];
   constructor() {
-    this.todoArray = [
-    {
-      sno:1,
-      title: "This is Title 1",
-      desc: "This is Description",
-      active: true
-    },
-    {
-      sno:2,
-      title: "This is Title 2",
-      desc: "This is Description",
-      active: true
-    },
-    {
-      sno:3,
-      title: "This is Title 3",
-      desc: "This is Description",
-      active: true
+    this.localItem = localStorage.getItem("todo");
+    if (this.localItem == null) {
+      this.todoArray = [];
     }
-    ]
-   }
+    else
+    {
+      this.todoArray = JSON.parse(this.localItem);
+    }
+  }
 
   ngOnInit(): void {
+  }
+
+  deleteToDo(todo: todoObject) {
+    const index = this.todoArray.indexOf(todo);
+    this.todoArray.splice(index, 1);
+    localStorage.setItem("todo", JSON.stringify(this.todoArray));
+  }
+
+  addToDo(todo: todoObject) {
+    this.todoArray.push(todo);
+    localStorage.setItem("todo", JSON.stringify(this.todoArray));
+  }
+
+  toggleToDo(todo: todoObject) {
+    todo.active = !todo.active;
+    localStorage.setItem("todo", JSON.stringify(this.todoArray));
   }
 
 }

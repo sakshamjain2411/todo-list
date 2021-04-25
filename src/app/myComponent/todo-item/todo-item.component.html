@@ -1,0 +1,28 @@
+<!-- <div class="jumbotron">
+    <h1 [ngClass]="{'strike': !todo.active , 'display-4': true}">{{todo.title}}</h1>
+    <p class="lead">{{todo.desc}}</p>
+    <div *ngIf="todo.active == true; else elseBlock">
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="onCheckBoxClick(todo)">
+            <label class="form-check-label" for="exampleCheck1">Mark as Done</label>
+        </div>
+    </div>
+    <ng-template #elseBlock>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="onCheckBoxClick(todo)" checked>
+            <label class="form-check-label" for="exampleCheck1">Done</label>
+        </div>
+    </ng-template>
+    <p class="lead">
+        <button class="btn btn-danger btn-md" (click)="onClick(todo)" >Delete</button>
+    </p>
+</div> -->
+<div class="row alert" [ngClass]="{'alert-warning': todo.active , 'alert-success': !todo.active}">
+    <div class="col-sm-8">{{todo.title}}</div>
+    <div *ngIf="todo.active == true;" class="col-sm-4">
+        <button class="btn" (click)="onCheckBoxClick(todo)">Mark as Done</button>
+    </div>
+    <div *ngIf="todo.active == false;" >
+        <button class="btn" (click)="onCheckBoxClick(todo)">Mark as Pending</button>
+    </div>
+</div>

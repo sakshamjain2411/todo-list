@@ -1,9 +1,7 @@
-<div *ngFor = "let x of todoArray">
-    <div class="jumbotron">
-        <h1 class="display-4">{{x.title}}</h1>
-        <p class="lead">{{x.desc}}</p>
-        <p class="lead">
-          <a class="btn btn-danger btn-md" href="#" role="button">Delete</a>
-        </p>
-    </div>
-</div>
+<app-add-todo (todoAdd)="addToDo($event)"></app-add-todo>
+<div class="alert alert-danger" *ngIf="this.todoArray.length===0; else elseBlock">No ToDo's To Display</div>
+<ng-template #elseBlock>
+  <div *ngFor="let todo of todoArray">
+    <app-todo-item [todo]="todo" (todoDelete)="deleteToDo($event)" (todoToggle)="toggleToDo($event)"></app-todo-item>
+  </div>
+</ng-template>
